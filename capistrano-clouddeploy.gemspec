@@ -10,6 +10,11 @@ Gem::Specification.new do |gem|
   gem.summary         = "Cloud Deployment and configuration for Amazon EC2"
   gem.description = "A Ruby library for capturing deployment configuration info from ec2 and future cloud services"
 
+  gem.add_development_dependency('mocha', '>= 0.9.9')
+  gem.add_development_dependency('test-unit', '>= 2.1.2')
+  gem.add_development_dependency('test-spec', '>= 0.10.0')
+
+
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})

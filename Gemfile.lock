@@ -1,0 +1,22 @@
+PATH
+  remote: .
+  specs:
+    capistrano-clouddeploy (0.0.1)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    metaclass (0.0.1)
+    mocha (0.10.5)
+      metaclass (~> 0.0.1)
+    test-spec (0.10.0)
+    test-unit (2.4.8)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  capistrano-clouddeploy!
+  mocha (>= 0.9.9)
+  test-spec (>= 0.10.0)
+  test-unit (>= 2.1.2)
