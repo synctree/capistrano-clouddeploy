@@ -13,6 +13,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency('mocha', '>= 0.9.9')
   gem.add_development_dependency('test-unit', '>= 2.1.2')
   gem.add_development_dependency('test-spec', '>= 0.10.0')
+  gem.add_development_dependency('ruby-debug19', '>= 0.11.6')
 
 
   gem.files         = `git ls-files`.split($\)

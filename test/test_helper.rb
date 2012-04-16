@@ -1,7 +1,7 @@
 require 'rubygems'
-require 'bundler'
-Bundler.setup
-
+require "bundler/setup"
+#require 'bundler'
+#Bundler.setup
 gem 'test-unit'
 
 %w[ test/unit test/spec mocha ].each { |f|
@@ -12,6 +12,8 @@ gem 'test-unit'
   end
 }
 
-require File.dirname(__FILE__) + '/../lib/capistrano-clouddeploy'
+require File.dirname(__FILE__) + '/../lib/aws'
+
+
 
 

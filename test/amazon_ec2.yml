@@ -1,0 +1,11 @@
+
+blank_environment:   #Leave this environment blank
+  bucket_name:       ''
+  access_key_id:     ''
+  secret_access_key: ''
+  region:            'us-east-1'
+test:
+  bucket_name:       'dfasfd'
+  access_key_id:     'asdfadsf'
+  secret_access_key: 'asdfasdf'
+  region:            'us-east-1'
