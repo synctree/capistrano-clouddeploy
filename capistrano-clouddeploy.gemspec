@@ -15,6 +15,10 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency('test-spec', '>= 0.10.0')
   gem.add_development_dependency('ruby-debug19', '>= 0.11.6')
 
+  gem.add_dependency(%q<capistrano>)
+  gem.add_dependency(%q<aws-s3>)
+  gem.add_dependency(%q<amazon-ec2>)
+
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
