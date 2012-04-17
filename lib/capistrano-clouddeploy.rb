@@ -1,5 +1,4 @@
-require 'aws'
-require 'capistrano'
+require 'capistrano-clouddeploy/aws_manager'
 
 configuration = Capistrano::Configuration.respond_to?(:instance) ?
   Capistrano::Configuration.instance(:must_exist) : Capistrano.configuration(:must_exist)

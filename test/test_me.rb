@@ -16,13 +16,13 @@ describe 'Cloud Deploy' do
 
     @application = "capistrano_test_app"
     @stage = "test"  
-    @deploy_manager = CapistranoCloudDeploy::AWS.new(@cap, @application, @stage, @aws_config)
+    @deploy_manager = CapistranoCloudDeploy::AWSManager.new(@cap, @application, @stage, @aws_config)
   end
 
   specify "throws error if not in config file" do
     aws_config = YAML.load(File.open(File.dirname(__FILE__) + "/amazon_ec2.yml"))['blank_environment']
     assert_raise do 
-      CapistranoCloudDeploy::AWS.new(@cap, @application, @stage, aws_config)
+      CapistranoCloudDeploy::AWSManager.new(@cap, @application, @stage, aws_config)
     end
   end 
 
@@ -83,7 +83,7 @@ describe 'Cloud Deploy' do
       @cap.expects(:role).with(:web)
       @cap.expects(:role).with(:db)
       
-      @deploy_manager = CapistranoCloudDeploy::AWS.new(@cap, @application, @stage, @aws_config)
+      @deploy_manager = CapistranoCloudDeploy::AWSManager.new(@cap, @application, @stage, @aws_config)
 
       @deploy_manager.set_cap_roles required_roles, config_roles
       

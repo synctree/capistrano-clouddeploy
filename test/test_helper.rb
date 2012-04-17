@@ -12,7 +12,7 @@ gem 'test-unit'
   end
 }
 
-require File.dirname(__FILE__) + '/../lib/aws'
+require File.dirname(__FILE__) + '/../lib/capistrano-clouddeploy/aws_manager'
 
 
 
