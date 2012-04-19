@@ -1,1 +1,1 @@
-require 'capistrano-clouddeploy/aws_manager.rb
+require 'capistrano-clouddeploy/aws_manager.rb'
