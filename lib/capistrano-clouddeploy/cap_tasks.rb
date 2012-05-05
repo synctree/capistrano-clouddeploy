@@ -1,4 +1,4 @@
-require 'aws_manager'
+require File.dirname(__FILE__) + '/aws_manager'
 
 configuration = Capistrano::Configuration.respond_to?(:instance) ?
   Capistrano::Configuration.instance(:must_exist) : Capistrano.configuration(:must_exist)
