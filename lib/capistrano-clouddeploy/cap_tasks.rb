@@ -28,6 +28,20 @@ configuration.load do
       end
     end
 
+    task :last_deploy_tag, :roles => [:manager] do
+      if !respond_to?(:bootstrapping) && deploy_manager
+        t = deploy_manager.retrieve_build
+        if t
+          logger.info("last deploy tag: #{t}\n")
+        else
+         logger.info("last deploy tag not set\n")
+        end
+      else
+        logger.info("bootstrapping or deploy manager not set")
+      end
+ 
+    end
+
     task :bootstrap do
       set :bootstrapping, true
       set :bootstrap, true
