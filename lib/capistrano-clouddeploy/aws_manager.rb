@@ -6,6 +6,7 @@ module CapistranoCloudDeploy
     def initialize(cap, application, stage, aws_config )
       @application = application
       @stage = stage
+      @deploy_config_bucket = aws_config['deploy_config_bucket']
       @aws_opts = {
         :access_key_id      => aws_config['access_key_id'],
         :secret_access_key  => aws_config['secret_access_key'],
@@ -20,11 +21,11 @@ module CapistranoCloudDeploy
     end
 
     def record_build(branch)
-      s3put("#{@application}/#{@stage}/latest-build", branch, 'cag-deploy')
+      s3put("#{@application}/#{@stage}/latest-build", branch,  @deploy_config_bucket)
     end
 
     def retrieve_build
-      s3get("#{@application}/#{@stage}/latest-build", 'cag-deploy').value
+      s3get("#{@application}/#{@stage}/latest-build",  @deploy_config_bucket).value
     end
 
 
@@ -127,5 +128,7 @@ module CapistranoCloudDeploy
 
   end
 end
+
+
 
 
