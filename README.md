@@ -72,16 +72,16 @@ or if you're using multistage-ext  you can type
 
 Tag Machines in Amazon with the following:  (Name and Value)
 
-    aws_test_deploy_app/enabled (true | false)
+    <APP_NAME_AS_DEFINED_IN_CAPISTRANO>/enabled (true | false)
     If set to false capistrano will ignore
 
 
-    aws_test_deploy_app/multistage/environment (<STAGE_NAME>)
+    <APP_NAME_AS_DEFINED_IN_CAPISTRANO>/multistage/environment (<STAGE_NAME>)
     Stage is the stage that this instance applies to
 
 
-    aws_test_deploy_app/capistrano/roles (web,db,app, ROLE, ...)
-    aws_test_deploy_app/capistrano/roles  is a comma separated list of roles that the machine has
+    <APP_NAME_AS_DEFINED_IN_CAPISTRANO>/capistrano/roles (web,db,app, ROLE, ...)
+    <APP_NAME_AS_DEFINED_IN_CAPISTRANO>/capistrano/roles  is a comma separated list of roles that the machine has
 
 
 
