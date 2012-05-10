@@ -53,21 +53,18 @@ or if you're using multistage-ext  you can type
 
     bundle exec cap <STAGE> deploy:list_roles
 
-Tag Machines in Amazon with the following
+Tag Machines in Amazon with the following:  (Name and Value)
 
-Name: aws_test_deploy_app/enabled
-Value: true 
-If this is false capistrano will not deploy
-
-
-Name: aws_test_deploy_app/multistage/environment
-Value: <STAGE>
-Stage is the stage that this instance applies to
+    aws_test_deploy_app/enabled (true | false)
+    If set to false capistrano will ignore
 
 
-Name: aws_test_deploy_app/capistrano/roles
-Value: web,db, app.
-aws_test_deploy_app/capistrano/roles  is a comma separated list of roles that the machine has
+    aws_test_deploy_app/multistage/environment (<STAGE_NAME>)
+    Stage is the stage that this instance applies to
+
+
+    aws_test_deploy_app/capistrano/roles (web,db,app, ROLE, ...)
+    aws_test_deploy_app/capistrano/roles  is a comma separated list of roles that the machine has
 
 
 
