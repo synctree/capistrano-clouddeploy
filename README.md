@@ -49,6 +49,10 @@ You'll see output similar to the following:
     ** ec2-23-**-27-232.compute-1.amazonaws.com
 
 
+or if you're using multistage-ext  you can type
+
+    bundle exec cap <STAGE> deploy:list_roles
+
 To get last deployed tag:
     bundle exec cap deploy:last_deploy_tag 
 
@@ -61,11 +65,10 @@ You'll see output similar to the following:
     ** last deploy tag: 1.0
 
 
-
-
 or if you're using multistage-ext  you can type
 
-    bundle exec cap <STAGE> deploy:list_roles
+    bundle exec cap <STAGE> deploy:last_deploy_tag
+
 
 Tag Machines in Amazon with the following:  (Name and Value)
 
