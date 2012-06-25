@@ -7,9 +7,10 @@ module CapistranoCloudDeploy
       @application = application
       @stage = stage
       @deploy_config_bucket = aws_config['deploy_config_bucket']
+
       @aws_opts = {
-        :access_key_id      => aws_config['access_key_id'],
-        :secret_access_key  => aws_config['secret_access_key'],
+        :access_key_id      => aws_config['access_key_id'] || ENV['AWS_ACCESS_KEY_ID'],
+        :secret_access_key  => aws_config['secret_access_key'] || ENV['AWS_SECRET_ACCESS_KEY'],
         :server             => (
           aws_config['server'] || "#{aws_config['region']}.ec2.amazonaws.com"
         )
@@ -25,7 +26,11 @@ module CapistranoCloudDeploy
     end
 
     def retrieve_build
-      s3get("#{@application}/#{@stage}/latest-build",  @deploy_config_bucket).value
+      begin
+        s3get("#{@application}/#{@stage}/latest-build",  @deploy_config_bucket).value
+      rescue AWS::S3::NoSuchKey
+        nil
+      end
     end
 
 
@@ -75,12 +80,11 @@ module CapistranoCloudDeploy
     def s3put(dest, string_or_stream, bucket, 
                 options = { :access => :public_read })
       # Copy this file to S3
-  
       AWS::S3::Base.establish_connection!(
        :access_key_id     => @aws_opts[:access_key_id],
        :secret_access_key => @aws_opts[:secret_access_key]
       )
-  
+ 
       AWS::S3::S3Object.store(dest, string_or_stream, bucket, options)
     end
   
@@ -89,7 +93,7 @@ module CapistranoCloudDeploy
        :access_key_id     => @aws_opts[:access_key_id],
        :secret_access_key => @aws_opts[:secret_access_key]
       )
-  
+
       AWS::S3::S3Object.find(path, bucket)
     end
 
