@@ -2,7 +2,7 @@
 
 Use Capistrano Cloud Deploy Gem to deploy your Amazon EC2 instances.
 Tag your instances with the the roles they get then on deployment Capistrano Cloud Deploy can
-figure out the roles and load into the capistrano configuration. 
+figure out the roles and load into the capistrano configuration.
 
 ## Installation
 
@@ -52,6 +52,11 @@ You'll see output similar to the following:
 or if you're using multistage-ext  you can type
 
     bundle exec cap <STAGE> deploy:list_roles
+
+
+Cloud deploy will use either the public dns or fall back to
+elastic ip address of an ec2 instance
+
 
 To get last deployed tag:
     bundle exec cap deploy:last_deploy_tag 
