@@ -97,6 +97,9 @@ module CapistranoCloudDeploy
       AWS::S3::S3Object.find(path, bucket)
     end
 
+    def public_address(instance) 
+      return instance['dnsName'] || instance['ipAddress']
+    end
 
     def set_cap_roles(required_roles, config_roles)
       each_role do |role_name, instances|
@@ -104,18 +107,20 @@ module CapistranoCloudDeploy
           @cap.set role_name, instances.first['privateDnsName'] 
         elsif role_name == :db
           if instances.size == 1
-            @cap.role role_name, instances.first['dnsName'], :primary => true
+            #use public dns or elastic ip address
+            public_addy = public_address(instances.first)
+            @cap.role role_name, public_addy, :primary => true
           else
             raise "You have more than one machine set to the db role:\n #{
-              instances.delete_if { |i| i['dnsName'].nil? }.
-                        collect   { |i| i['dnsName'] }.
+              instances.delete_if { |i| public_address(i).nil? }.
+                        collect   { |i| public_address(i) }.
                         join(",")
             }\nand we don't know which one is primary"
           end
         else
           @cap.role role_name do
-            instances.delete_if { |i| i['dnsName'].nil? }.
-                      collect   { |i| i['dnsName'] }
+            instances.delete_if { |i| public_address(i).nil? }.
+                      collect   { |i| public_address(i) }
           end
         end
       end
