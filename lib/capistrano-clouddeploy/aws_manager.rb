@@ -98,12 +98,12 @@ module CapistranoCloudDeploy
     end
 
     def public_address(instance) 
-      return instance['dnsName'] || instance['ipAddress'] || (
-        instance['vpcId'] ? instance['privateIpAddress'] : nil
+      return instance['vpcId'] ? instance['privateIpAddress'] : (
+        instance['dnsName'] || instance['ipAddress']
       )
     end
 
-    def set_cap_roles(required_roles, config_roles)
+    def set_cap_roles(required_roles = [], config_roles = [])
       each_role do |role_name, instances|
         if config_roles.include?(role_name)
           @cap.set role_name, instances.first['privateDnsName'] 
