@@ -98,7 +98,9 @@ module CapistranoCloudDeploy
     end
 
     def public_address(instance) 
-      return instance['dnsName'] || instance['ipAddress']
+      return instance['dnsName'] || instance['ipAddress'] || (
+        instance['vpcId'] ? instance['privateIpAddress'] : nil
+      )
     end
 
     def set_cap_roles(required_roles, config_roles)
