@@ -62,7 +62,7 @@ module CapistranoCloudDeploy
           next unless tags["#{@application}/enabled"] == "true" &&
                       tags["#{@application}/multistage/environment"] == @stage.to_s
   
-          instance_roles = (tags["#{@application}/capistrano/roles"] || "").split(",")
+          instance_roles = (tags["#{@application}/capistrano/roles"] || "").split(/[,\|]/)
           instance_roles.each do |role_name| roles[role_name] ||= []
             roles[role_name].push(instance)
           end
